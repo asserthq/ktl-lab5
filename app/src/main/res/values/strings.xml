@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Lab5</string>
-    <string name="pages_count_label">Количество страниц:</string>
+    <string name="price_input_label">Цена за 1 страницу:</string>
+    <string name="pages_count_input_label">Количество страниц:</string>
+    <string name="sale_slider_label">Скидка:</string>
+    <string name="cost_label">Стоимость:</string>
+    <string name="cost_default_text">0</string>
 </resources>
