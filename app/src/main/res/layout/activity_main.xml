@@ -86,11 +86,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/pagesCountInputLabelTextView"
-            app:layout_constraintTop_toBottomOf="@+id/costEditTextNumberDecimal"
+            app:layout_constraintTop_toBottomOf="@+id/priceEditTextNumberDecimal"
             tools:ignore="LabelFor" />
 
         <EditText
-            android:id="@+id/costEditTextNumberDecimal"
+            android:id="@+id/priceEditTextNumberDecimal"
             android:layout_width="150dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
