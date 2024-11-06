@@ -3,7 +3,6 @@ package com.example.lab5
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -16,8 +15,8 @@ import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity() {
-    private var mPrice: Int = 0
-    private var mPagesCount: Int = 0
+    private var mPrice: Int? = null
+    private var mPagesCount: Int? = null
     private var mSaleInPercents: Int = 0
     private lateinit var mSaleLabel: TextView
     private lateinit var mCostLabel: TextView
@@ -64,9 +63,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<SeekBar>(R.id.saleSeekBar).setOnSeekBarChangeListener(
             object: OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    val percents = progress * 5
-                    mSaleInPercents = percents
-                    mSaleLabel.text = getString(R.string.sale_text, percents);
+                    (progress * 5).let {
+                        mSaleInPercents = it
+                        mSaleLabel.text = getString(R.string.sale_text, it)
+                    }
                     updateCost()
                 }
 
@@ -78,6 +78,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateCost() {
-        mCostLabel.text = (mPrice * mPagesCount * (1 - mSaleInPercents / 100.0f)).roundToInt().toString()
+        val price = mPrice
+        val pagesCount = mPagesCount
+        mCostLabel.text = if (price != null && pagesCount != null) {
+            (price * pagesCount * (1 - mSaleInPercents / 100.0f)).roundToInt().toString()
+        } else {
+            getString(R.string.cost_default_text)
+        }
     }
 }
