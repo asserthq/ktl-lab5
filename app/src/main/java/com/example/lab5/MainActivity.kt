@@ -71,6 +71,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateCost() {
-        mCostLabel?.text = (mPrice * mPagesCount * (mSaleInPercents / 100.0f)).roundToInt().toString()
+        mCostLabel?.text = (mPrice * mPagesCount * (1 - mSaleInPercents / 100.0f)).roundToInt().toString()
     }
 }
