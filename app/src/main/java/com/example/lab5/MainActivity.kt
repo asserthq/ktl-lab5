@@ -3,6 +3,7 @@ package com.example.lab5
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity() {
     private var mPrice: Int = 0
     private var mPagesCount: Int = 0
     private var mSaleInPercents: Int = 0
-    private var mCostLabel: TextView? = null
+    private lateinit var mSaleLabel: TextView
+    private lateinit var mCostLabel: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         mCostLabel = findViewById(R.id.costLabelTextView)
+        mSaleLabel = findViewById(R.id.saleTextView)
+
+        mCostLabel.text = getString(R.string.sale_text, 0)
 
         findViewById<EditText>(R.id.priceEditTextNumberDecimal).addTextChangedListener(
             object: TextWatcher {
@@ -59,7 +64,9 @@ class MainActivity : AppCompatActivity() {
         findViewById<SeekBar>(R.id.saleSeekBar).setOnSeekBarChangeListener(
             object: OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    mSaleInPercents = progress
+                    val percents = progress * 5
+                    mSaleInPercents = percents
+                    mSaleLabel.text = getString(R.string.sale_text, percents);
                     updateCost()
                 }
 
@@ -71,6 +78,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun updateCost() {
-        mCostLabel?.text = (mPrice * mPagesCount * (1 - mSaleInPercents / 100.0f)).roundToInt().toString()
+        mCostLabel.text = (mPrice * mPagesCount * (1 - mSaleInPercents / 100.0f)).roundToInt().toString()
     }
 }

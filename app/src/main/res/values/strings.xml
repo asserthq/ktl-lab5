@@ -4,5 +4,5 @@
     <string name="pages_count_input_label">Количество страниц:</string>
     <string name="sale_slider_label">Скидка:</string>
     <string name="cost_label">Стоимость:</string>
-    <string name="cost_default_text">0</string>
+    <string name="sale_text">%1$d%%</string>
 </resources>

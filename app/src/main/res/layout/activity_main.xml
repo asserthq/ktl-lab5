@@ -23,20 +23,23 @@
         <TextView
             android:id="@+id/costTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/cost_default_text"
+            android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/costLabelTextView"
-            app:layout_constraintTop_toBottomOf="@+id/saleSeekBar" />
+            app:layout_constraintTop_toBottomOf="@+id/saleSeekBar"
+            tools:text="268" />
 
         <TextView
             android:id="@+id/costLabelTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
+            android:gravity="center"
             android:text="@string/cost_label"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +69,7 @@
         <TextView
             android:id="@+id/saleSliderLabelTextView"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:gravity="start|center"
             android:text="@string/sale_slider_label"
@@ -83,11 +86,13 @@
             android:autofillHints=""
             android:ems="10"
             android:inputType="numberDecimal"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/pagesCountInputLabelTextView"
             app:layout_constraintTop_toBottomOf="@+id/priceEditTextNumberDecimal"
-            tools:ignore="LabelFor" />
+            tools:ignore="LabelFor"
+            tools:text="51" />
 
         <EditText
             android:id="@+id/priceEditTextNumberDecimal"
@@ -97,25 +102,40 @@
             android:autofillHints=""
             android:ems="10"
             android:inputType="numberDecimal"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/priceInputLabelTextView"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="LabelFor" />
+            tools:ignore="LabelFor"
+            tools:text="7" />
 
         <SeekBar
             android:id="@+id/saleSeekBar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="280dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="16dp"
+            style="@android:style/Widget.Material.SeekBar.Discrete"
+            android:layout_width="245dp"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:max="19"
-            android:progress="5"
+            android:progress="0"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/pagesCountEditTextNumberDecimal"
+            tools:progress="5" />
+
+        <TextView
+            android:id="@+id/saleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/saleSeekBar"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/saleSliderLabelTextView"
-            app:layout_constraintTop_toBottomOf="@+id/pagesCountEditTextNumberDecimal" />
+            app:layout_constraintTop_toBottomOf="@+id/pagesCountInputLabelTextView"
+            tools:text="25%" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
