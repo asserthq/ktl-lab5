@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     private var mPrice: Int? = null
     private var mPagesCount: Int? = null
     private var mSaleInPercents: Int = 0
-    private lateinit var mSaleLabel: TextView
-    private lateinit var mCostLabel: TextView
+    private lateinit var mSaleView: TextView
+    private lateinit var mCostView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,15 +31,19 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        mCostLabel = findViewById(R.id.costLabelTextView)
-        mSaleLabel = findViewById(R.id.saleTextView)
+        mSaleView = findViewById(R.id.saleTextView)
+        mCostView = findViewById(R.id.costTextView)
 
-        mCostLabel.text = getString(R.string.sale_text, 0)
+        mSaleView.text = getString(R.string.sale_text, 0)
 
         findViewById<EditText>(R.id.priceEditTextNumberDecimal).addTextChangedListener(
             object: TextWatcher {
                 override fun afterTextChanged(s: Editable) {
-                    mPrice = s.toString().toInt()
+                    mPrice = try {
+                        s.toString().toInt()
+                    } catch (_: Exception) {
+                        null
+                    }
                     updateCost()
                 }
 
@@ -51,7 +55,11 @@ class MainActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.pagesCountEditTextNumberDecimal).addTextChangedListener(
             object: TextWatcher {
                 override fun afterTextChanged(s: Editable) {
-                    mPagesCount = s.toString().toInt()
+                    mPagesCount = try {
+                        s.toString().toInt()
+                    } catch (_: Exception) {
+                        null
+                    }
                     updateCost()
                 }
 
@@ -65,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                     (progress * 5).let {
                         mSaleInPercents = it
-                        mSaleLabel.text = getString(R.string.sale_text, it)
+                        mSaleView.text = getString(R.string.sale_text, it)
                     }
                     updateCost()
                 }
@@ -80,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     fun updateCost() {
         val price = mPrice
         val pagesCount = mPagesCount
-        mCostLabel.text = if (price != null && pagesCount != null) {
+        mCostView.text = if (price != null && pagesCount != null) {
             (price * pagesCount * (1 - mSaleInPercents / 100.0f)).roundToInt().toString()
         } else {
             getString(R.string.cost_default_text)
